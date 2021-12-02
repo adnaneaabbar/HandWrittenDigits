@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 batch_size = 128
 num_classes = 10
-epochs = 20
+epochs = 10
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -33,10 +33,10 @@ model.summary()
 
 # try sgd, RMSProp, adam
 model.compile(loss='categorical_crossentropy',
-              optimizer='rmsprop',
+              optimizer='adam',
               metrics=['accuracy'])
 
-model.fit(x_train,
+history = model.fit(x_train,
           y_train,
           batch_size=batch_size,
           epochs=epochs,
@@ -48,3 +48,24 @@ score = model.evaluate(x_test,
 
 print('Test loss: ', score[0])
 print('Test accuracy: ', score[1])
+
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+
+# summarize history for accuracy
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper left')
+plt.show()
+
+filename = 'models/model.sav'
+model.save(filename)
