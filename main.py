@@ -56,7 +56,7 @@ plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-plt.savefig("data/CnnLoss.png")
+# plt.savefig("data/CnnLoss.png")
 plt.show()
 
 # summarize history for accuracy
@@ -66,7 +66,7 @@ plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-plt.savefig("data/CnnAcc.png")
+# plt.savefig("data/CnnAcc.png")
 plt.show()
 
 filename = 'models/model.sav'
